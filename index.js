@@ -1,6 +1,8 @@
 const Bitbucket = require("./bin/Bitbucket");
 const Github = require("./bin/Github");
 const dotenv = require("dotenv");
+
+// load in our environment variables
 dotenv.config();
 
 (async () => {

@@ -92,10 +92,12 @@ class Bitbucket {
     try {
       // initialize repo
       await exec(commands);
+
       return true;
     } catch (e) {
       console.log("couldn't pull repository", repository.slug);
     }
+
     return false;
   }
 }

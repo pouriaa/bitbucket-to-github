@@ -117,11 +117,13 @@ class Github {
     try {
       // initialize repo
       await exec(commands);
+
       return true;
     } catch (e) {
       console.log(e);
       console.log("couldn't push repository", repository.slug);
     }
+
     return false;
   }
 }

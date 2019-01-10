@@ -1,0 +1,16 @@
+{
+  "name": "bitbucket-to-github",
+  "version": "1.0.0",
+  "description": "Transfer your Bitbucket repositories to Github.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Pouria Assadipour",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "request-promise": "^4.2.2"
+  }
+}

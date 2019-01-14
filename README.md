@@ -1,7 +1,7 @@
 ## Bitbucket to Github Migration
 This repository transfers ALL of your Bitbucket repositories to Github while maintaining its privacy status.
 ### Getting Started
-To migrate your Bitbucket repositories over to Github, get this repository, fill in the configuration variables, and run `index.js`.
+Make sure you have node and npm before continuing.
 ##### Clone the repo
 `git clone https://github.com/pouriaa/bitbucket-to-github.git`
 ##### Enter the repo

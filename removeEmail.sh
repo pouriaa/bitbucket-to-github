@@ -19,5 +19,7 @@ for d in */; do
           export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
       fi
       ' --tag-name-filter cat -- --branches --tags 
+    git update-ref -d refs/original/refs/heads/*
+    git push --force --tags origin 'refs/heads/*'
     cd ..
 done

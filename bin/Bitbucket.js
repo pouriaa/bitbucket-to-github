@@ -22,7 +22,7 @@ class Bitbucket {
       // make a request to the Bitbucket API
       response = await request(
         "https://api.bitbucket.org/2.0/repositories/" +
-          process.env.BITBUCKET_USERNAME +
+          process.env.BITBUCKET_ACCOUNT_ID +
           "?page=" +
           currentPage,
         {

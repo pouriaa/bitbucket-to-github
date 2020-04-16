@@ -78,17 +78,13 @@ class Bitbucket {
     // path to the local repository
     const pathToRepo = path.resolve(
       __dirname,
-      "../repositories/",
-      repository.slug
+      "../repositories/"
     );
 
     // initialize a folder and git repo on this machine
     // add Bitbucket as a remote and pull
-    let commands = `mkdir ${pathToRepo}  \
-                && cd ${pathToRepo} \
-                && git init \
-                && git remote add origin ${repository.links.clone[0].href} \
-                && git pull origin master`;
+    let commands = `cd ${pathToRepo} \
+                && git clone --bare ${repository.links.clone[0].href} ${repository.slug}`;
     try {
       // initialize repo
       await exec(commands);

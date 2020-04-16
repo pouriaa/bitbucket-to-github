@@ -112,13 +112,11 @@ class Github {
     // initialize a folder and git repo on this machine
     // add Bitbucket as a remote and pull
     let commands = ` cd ${pathToRepo} \
-                && git init \
-                && git remote set-url origin https://${
+                && git push --mirror https://${
                   process.env.GITHUB_USERNAME
                 }:${process.env.GITHUB_TOKEN}@github.com/${
       process.env.GITHUB_WORKSPACE
-    }/${repository.slug}.git \
-                && git push origin master`;
+    }/${repository.slug}.git`;
     try {
       // initialize repo
       await exec(commands);

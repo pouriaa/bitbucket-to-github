@@ -83,8 +83,10 @@ class Bitbucket {
 
     // initialize a folder and git repo on this machine
     // add Bitbucket as a remote and pull
+    // `repository.links.clone[0].href`?
+    const repoUrl = `https://${process.env.BITBUCKET_USERNAME}:${process.env.BITBUCKET_PASSWORD}@bitbucket.org/${process.env.BITBUCKET_WORKSPACE}/${repository.slug}.git`
     let commands = `cd ${pathToRepo} \
-                && git clone --bare ${repository.links.clone[0].href} ${repository.slug}`;
+                && git clone --bare ${repoUrl} ${repository.slug}`;
     try {
       // initialize repo
       await exec(commands);

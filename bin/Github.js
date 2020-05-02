@@ -35,10 +35,15 @@ class Github {
    * @returns {Bolean} success status
    */
   static async createRepository(repository) {
+    const isOrg = process.env.GITHUB_USERNAME !== process.env.GITHUB_WORKSPACE
+    const url = isOrg
+      ? `https://api.github.com/orgs/${process.env.GITHUB_WORKSPACE}/repos`
+      : "https://api.github.com/user/repos"
+
     try {
       // make the request for a new repo
       await request.post({
-        url: "https://api.github.com/user/repos",
+        url,
         body: {
           name: repository.slug,
           description: repository.description,
@@ -107,13 +112,11 @@ class Github {
     // initialize a folder and git repo on this machine
     // add Bitbucket as a remote and pull
     let commands = ` cd ${pathToRepo} \
-                && git init \
-                && git remote set-url origin https://${
+                && git push --mirror https://${
                   process.env.GITHUB_USERNAME
                 }:${process.env.GITHUB_TOKEN}@github.com/${
-      process.env.GITHUB_USERNAME
-    }/${repository.slug}.git \
-                && git push origin master`;
+      process.env.GITHUB_WORKSPACE
+    }/${repository.slug}.git`;
     try {
       // initialize repo
       await exec(commands);

@@ -22,7 +22,7 @@ class Bitbucket {
       // make a request to the Bitbucket API
       response = await request(
         "https://api.bitbucket.org/2.0/repositories/" +
-          process.env.BITBUCKET_ACCOUNT_ID +
+          process.env.BITBUCKET_WORKSPACE +
           "?page=" +
           currentPage,
         {
@@ -78,17 +78,15 @@ class Bitbucket {
     // path to the local repository
     const pathToRepo = path.resolve(
       __dirname,
-      "../repositories/",
-      repository.slug
+      "../repositories/"
     );
 
     // initialize a folder and git repo on this machine
     // add Bitbucket as a remote and pull
-    let commands = `mkdir ${pathToRepo}  \
-                && cd ${pathToRepo} \
-                && git init \
-                && git remote add origin ${repository.links.clone[0].href} \
-                && git pull origin master`;
+    // `repository.links.clone[0].href`?
+    const repoUrl = `https://${process.env.BITBUCKET_USERNAME}:${process.env.BITBUCKET_PASSWORD}@bitbucket.org/${process.env.BITBUCKET_WORKSPACE}/${repository.slug}.git`
+    let commands = `cd ${pathToRepo} \
+                && git clone --bare ${repoUrl} ${repository.slug}`;
     try {
       // initialize repo
       await exec(commands);
